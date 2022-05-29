@@ -46,6 +46,7 @@ const TokenInput = React.forwardRef<
       ) {
         view('self')
         event.preventDefault()
+        event.stopPropagation()
       } else if (event.key === 'Backspace' && !inputRef.current!.value) {
         deleteToken([index])
         event.preventDefault()
@@ -65,8 +66,12 @@ const TokenInput = React.forwardRef<
     }
 
     function view(focus: FocusMovement) {
-      if (inputRef.current && inputRef.current?.value.trim() !== '') {
-        updateToken(index, parseToken(inputRef.current.value), focus)
+      applyToken(inputRef.current!.value, focus)
+    }
+
+    function applyToken(text: string, focus: FocusMovement) {
+      if (text) {
+        updateToken(index, parseToken(text), focus)
       } else {
         deleteToken([index])
       }
@@ -78,6 +83,12 @@ const TokenInput = React.forwardRef<
       }, 0)
     }
 
+    function onBlur() {
+      const text: string = inputRef.current!.value
+      setTimeout(() => {
+        applyToken(text, 'self')
+      }, 0)
+    }
     return (
       <span className={classes.token}>
         <input
@@ -87,7 +98,7 @@ const TokenInput = React.forwardRef<
           onInput={(_) => updateSpanText()}
           onKeyDown={(e) => keyDown(e)}
           defaultValue={text}
-          onBlur={() => onPaste()}
+          onBlur={() => onBlur()}
           type='text'
         />
         <span style={{ visibility: 'hidden' }} className={classes.tag}>
