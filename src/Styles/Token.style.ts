@@ -13,19 +13,19 @@ export type TokenFieldCSS = Pick<
   | 'borderRadius'
   | 'maxHeight'
 > | null
-export const getTokenFieldCSS: (css?: TokenFieldCSS) => React.CSSProperties = (
-  css: TokenFieldCSS
-): React.CSSProperties => ({
-  resize: css?.resize || 'both',
-  height: css?.height || 'auto',
-  border: css?.border || '1px solid #ccc',
-  gap: css?.gap || '5px',
-  padding: css?.padding || '10px',
-  background: css?.background || '',
-  color: css?.color || '#333',
-  boxShadow: css?.boxShadow || 'none',
-  borderRadius: css?.borderRadius || 'unset',
-  maxHeight: css?.maxHeight || '200px'
+export const getTokenFieldCSS: (
+  cssStyle?: TokenFieldCSS
+) => React.CSSProperties = (cssStyle): React.CSSProperties => ({
+  resize: cssStyle?.resize || 'both',
+  height: cssStyle?.height || 'auto',
+  border: cssStyle?.border || '1px solid #ccc',
+  gap: cssStyle?.gap || '5px',
+  padding: cssStyle?.padding || '10px',
+  background: cssStyle?.background || '',
+  color: cssStyle?.color || '#333',
+  boxShadow: cssStyle?.boxShadow || 'none',
+  borderRadius: cssStyle?.borderRadius || 'unset',
+  maxHeight: cssStyle?.maxHeight || '200px'
 })
 
 export type TokenCSS = Pick<
