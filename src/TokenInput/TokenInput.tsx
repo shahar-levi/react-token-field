@@ -83,8 +83,8 @@ const TokenInput = React.forwardRef<
       }, 0)
     }
 
-    function onBlur() {
-      const text: string = inputRef.current!.value
+    function onBlur(e: React.FocusEvent) {
+      const text: string = (e.nativeEvent.target as HTMLInputElement)!.value
       setTimeout(() => {
         applyToken(text, 'self')
       }, 0)
@@ -98,7 +98,7 @@ const TokenInput = React.forwardRef<
           onInput={(_) => updateSpanText()}
           onKeyDown={(e) => keyDown(e)}
           defaultValue={text}
-          onBlur={() => onBlur()}
+          onBlur={(e) => onBlur(e)}
           type='text'
         />
         <span style={{ visibility: 'hidden' }} className={classes.tag}>
