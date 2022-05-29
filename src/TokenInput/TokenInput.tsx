@@ -45,18 +45,22 @@ const TokenInput = React.forwardRef<
         containDelimiter(event.key)
       ) {
         view('self')
+        event.preventDefault()
       } else if (event.key === 'Backspace' && !inputRef.current!.value) {
         deleteToken([index])
+        event.preventDefault()
       } else if (
         event.key === 'ArrowLeft' &&
         Utils.inputCaretStart(inputRef.current)
       ) {
         view('back')
+        event.preventDefault()
       } else if (
         event.key === 'ArrowRight' &&
         Utils.inputCaretEnd(inputRef.current)
       ) {
         view('next')
+        event.preventDefault()
       }
     }
 
