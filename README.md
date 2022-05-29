@@ -13,18 +13,34 @@ npm install --save react-tokenfield
 ## Usage
 
 ```tsx
-import React, { Component } from 'react'
+import { TokenField } from "react-tokenfield";
+import "react-tokenfield/dist/index.css";
+import React, { useState } from "react";
 
-import MyComponent from 'react-tokenfield'
-import 'react-tokenfield/dist/index.css'
+const App = () => {
+  const [tokens, setTokens] = useState<string[]>([
+    "shahar.levi@me.com",
+    "john.smith@google.com",
+    "invalid-email"
+  ]);
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
-}
+  const emailPattern: string =
+    "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+
+  return (
+    <div>
+      <TokenField
+        onChange={({ tokens }) => setTokens(tokens)}
+        pattern={emailPattern}
+        tokens={tokens}
+      />
+    </div>
+  );
+};
+export default App;
+
 ```
 
 ## License
 
-MIT © [Shahar Levi](https://github.com/Shahar Levi)
+MIT © [Shahar Levi](https://github.com/Shahar-Levi)
