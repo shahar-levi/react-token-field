@@ -61,7 +61,7 @@ const TokenInput = React.forwardRef<
     }
 
     function view(focus: FocusMovement) {
-      if (inputRef.current) {
+      if (inputRef.current && inputRef.current?.value.trim() !== '') {
         updateToken(index, parseToken(inputRef.current.value), focus)
       } else {
         deleteToken([index])
