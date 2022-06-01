@@ -28,6 +28,11 @@ export enum ActionType {
   FocusNew
 }
 
+export interface DelimiterActions {
+  containDelimiter: (key: string) => boolean
+  parseToken: (token: string) => string[]
+}
+
 type Action =
   | {
       type: ActionType.Add

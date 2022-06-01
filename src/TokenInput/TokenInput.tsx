@@ -3,17 +3,17 @@ import React, { useImperativeHandle, useRef } from 'react'
 
 import { FocusRef } from '../TokenField/TokenField'
 import Utils from '../Utils/Utils'
-import { FocusMovement, TokenProps } from '../TokensReducer/TokensReducer'
+import {
+  DelimiterActions,
+  FocusMovement,
+  TokenProps
+} from '../TokensReducer/TokensReducer'
 
 export interface TokenAdditionalProps {
   index: number
   text: string
   selected: boolean
-}
-
-interface DelimiterActions {
-  containDelimiter: (key: string) => boolean
-  parseToken: (token: string) => string[]
+  hideRemoveButton: boolean
 }
 
 const TokenInput = React.forwardRef<
@@ -21,7 +21,15 @@ const TokenInput = React.forwardRef<
   TokenProps & TokenAdditionalProps & DelimiterActions
 >(
   (
-    { index, text, updateToken, deleteToken, parseToken, containDelimiter },
+    {
+      index,
+      text,
+      updateToken,
+      deleteToken,
+      parseToken,
+      containDelimiter,
+      hideRemoveButton
+    },
     ref
   ): React.ReactElement => {
     const inputRef = useRef<HTMLInputElement | null>(null)
@@ -105,10 +113,12 @@ const TokenInput = React.forwardRef<
           <span className={classes.value} ref={spanRef}>
             {text}
           </span>
-          <span
-            onClick={() => deleteToken([index])}
-            className={classes.remove}
-          />
+          {hideRemoveButton ? (
+            <span
+              onClick={() => deleteToken([index])}
+              className={classes.remove}
+            />
+          ) : null}
         </span>
       </span>
     )

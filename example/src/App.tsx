@@ -21,9 +21,11 @@ const App = () => {
       }}
     >
       <TokenField
+        placeholder="Type an email"
         onChange={({ tokens }) => setTokens(tokens)}
         pattern={emailPattern}
         autoFocus={false}
+        showRemoveButton={false}
         tokenFieldCSS={{
           gap: '10px',
           background: '#fff',

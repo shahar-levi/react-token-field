@@ -7,6 +7,7 @@ export interface TokenAdditionalProps {
   index: number
   text: string
   selected: boolean
+  hideRemoveButton: boolean
 }
 
 export const Token = React.forwardRef<
@@ -23,7 +24,8 @@ export const Token = React.forwardRef<
       getTokenStyle,
       isValid,
       deleteSelected,
-      selected
+      selected,
+      hideRemoveButton
     },
     ref
   ): React.ReactElement => {
@@ -105,7 +107,9 @@ export const Token = React.forwardRef<
         style={getCSS()}
       >
         <span className={classes.value}>{text}</span>
-        <span onClick={(e) => deleteItem(e)} className={classes.remove} />
+        {hideRemoveButton ? (
+          <span onClick={(e) => deleteItem(e)} className={classes.remove} />
+        ) : null}
       </span>
     )
   }

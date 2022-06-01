@@ -24,8 +24,10 @@ export type Details = { tokens: string[]; valid?: string[]; invalid?: string[] }
 const TokenField = ({
   tokens = [],
   delimiters = ' ',
+  placeholder = '',
   pattern = '',
   readonly = false,
+  showRemoveButton = true,
   tokenFieldCSS,
   getTokenCSS,
   onChange,
@@ -33,8 +35,10 @@ const TokenField = ({
 }: {
   tokens?: string[]
   pattern?: string
+  placeholder?: string
   delimiters?: string
   readonly?: boolean
+  showRemoveButton?: boolean
   tokenFieldCSS?: TokenFieldCSS
   getTokenCSS?: (state: TokenState) => TokenCSS
   onChange?: (details: Details) => void
@@ -90,6 +94,7 @@ const TokenField = ({
       <Token
         {...tokenProps}
         text={token}
+        hideRemoveButton={showRemoveButton}
         ref={(el) => addRef(el, index)}
         selected={state.selectedIndexes.includes(index)}
         index={index}
@@ -128,6 +133,7 @@ const TokenField = ({
         text={token}
         ref={(el) => addRef(el, index)}
         index={index}
+        hideRemoveButton={showRemoveButton}
         containDelimiter={(key) => containDelimiter(key)}
         parseToken={(token) => parseToken(token)}
         selected={state.selectedIndexes.includes(index)}
@@ -140,6 +146,8 @@ const TokenField = ({
     if (!readonly) {
       return (
         <TokenNewInput
+          placeholder={placeholder}
+          hideRemoveButton={showRemoveButton}
           ref={newTokenRef}
           {...tokenProps}
           containDelimiter={(key) => containDelimiter(key)}
