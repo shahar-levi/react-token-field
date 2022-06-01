@@ -4,6 +4,15 @@
 
 [![NPM](https://img.shields.io/npm/v/react-tokenfield.svg)](https://www.npmjs.com/package/react-tokenfield) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+## Features
+- Select All with Ctrl+A
+- Copy & paste tokens with Ctrl+C and Ctrl+V
+- Keyboard navigation, delete tokens with keyboard (arrow keys, Tab/Shift + Tab)
+- Customizable token renderer
+- Validation using regular expression
+- Customizable token delimiters
+- Customizable token style
+
 ## Install
 
 ```bash
@@ -30,9 +39,10 @@ const App = () => {
   return (
     <div>
       <TokenField
-        onChange={({ tokens }) => setTokens(tokens)}
-        pattern={emailPattern}
-        tokens={tokens}
+        placeholder = 'Type an email'
+        onChange = {({ tokens }) => setTokens(tokens)}
+        pattern = { emailPattern }
+        tokens= { tokens }
       />
     </div>
   );
@@ -40,6 +50,9 @@ const App = () => {
 export default App;
 
 ```
+#Demo
+
+[Link](https://shahar-levi.github.io/react-tokenfield-demo)
 
 ## License
 
