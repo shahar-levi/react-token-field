@@ -1,8 +1,18 @@
 {
   "name": "react-tokenfield",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Create token fields with copy/paste and keyboard support",
   "author": "Shahar Levi",
+  "keywords": [
+    "token",
+    "fokenfield",
+    "tags",
+    "input control",
+    "control",
+    "edit",
+    "remove",
+    "list"
+  ],
   "license": "MIT",
   "repository": "shahar-levi/react-tokenfield",
   "main": "dist/index.js",
