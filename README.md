@@ -48,11 +48,12 @@ const App = () => {
   );
 };
 export default App;
-
 ```
-#Demo
+##Snapshot
+![alt text](https://shahar-levi.github.io/react-tokenfield-demo/tokenfield.png)
 
-[Link](https://shahar-levi.github.io/react-tokenfield-demo)
+
+##[Demo](https://shahar-levi.github.io/react-tokenfield-demo)
 
 ## License
 
