@@ -100,7 +100,7 @@ function handleFocus(
 const reducer = (state: TokensState, action: Action) => {
   const updatedState: TokensState = { ...state }
   let lastIndex: number
-  const tokens = [...updatedState.tokens]
+  const tokens: string[] = updatedState.tokens.map((str) => str)
   let multi: boolean
   switch (action.type) {
     case ActionType.Update:

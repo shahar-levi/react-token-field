@@ -1,5 +1,4 @@
 import { TokenField } from 'react-tokenfield'
-import 'react-tokenfield/dist/index.css'
 import React, { useState } from 'react'
 
 const App = () => {
@@ -16,12 +15,13 @@ const App = () => {
     <div
       style={{
         width: '400px',
+        fontFamily: 'Arial',
         padding: '10px',
         margin: '0 auto'
       }}
     >
       <TokenField
-        placeholder="Type an email"
+        placeholder='Type an email'
         onChange={({ tokens }) => setTokens(tokens)}
         pattern={emailPattern}
         autoFocus={false}
