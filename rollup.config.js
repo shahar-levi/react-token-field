@@ -1,13 +1,13 @@
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import typescript from '@rollup/plugin-typescript';
-import { terser } from 'rollup-plugin-terser';
-import external from 'rollup-plugin-peer-deps-external';
-import postcss from 'rollup-plugin-postcss';
-import dts from 'rollup-plugin-dts';
+import resolve from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
+import typescript from '@rollup/plugin-typescript'
+import { terser } from 'rollup-plugin-terser'
+import external from 'rollup-plugin-peer-deps-external'
+import postcss from 'rollup-plugin-postcss'
+import dts from 'rollup-plugin-dts'
 
-const packageJson = require('./package.json');
-
+const packageJson = require('./package.json')
+const devMode = process.env.NODE_ENV === 'development'
 export default [
   {
     input: 'src/index.ts',
@@ -15,13 +15,13 @@ export default [
       {
         file: packageJson.main,
         format: 'cjs',
-        sourcemap: true,
+        sourcemap: devMode,
         name: 'react-tokenfield'
       },
       {
         file: packageJson.module,
         format: 'esm',
-        sourcemap: true
+        sourcemap: devMode
       }
     ],
     plugins: [
@@ -30,15 +30,15 @@ export default [
       commonjs(),
       typescript({ tsconfig: './tsconfig.json' }),
       postcss({
-        extensions: ['.css'],
+        extensions: ['.css']
       }),
       terser()
-    ],
+    ]
   },
   {
     input: 'dist/esm/types/index.d.ts',
-    output: [{ file: 'dist/index.d.ts', format: "esm" }],
+    output: [{ file: 'dist/index.d.ts', format: 'esm' }],
     external: [/\.css$/],
-    plugins: [dts()],
-  },
+    plugins: [dts()]
+  }
 ]
