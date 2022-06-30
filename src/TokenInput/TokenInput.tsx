@@ -1,7 +1,7 @@
 import classes from './../styles.module.css'
 import React, { useImperativeHandle, useRef } from 'react'
 
-import { FocusRef } from '../TokenField/TokenField'
+import { InputRef } from '../TokenField/TokenField'
 import Utils from '../Utils/Utils'
 import {
   DelimiterActions,
@@ -13,11 +13,13 @@ export interface TokenAdditionalProps {
   index: number
   text: string
   selected: boolean
-  hideRemoveButton: boolean
+  hideRemoveButton: boolean | undefined
+  onInput: (value: string) => void
+  isFocusOnOptions: (e: React.FocusEvent) => boolean
 }
 
 const TokenInput = React.forwardRef<
-  FocusRef,
+  InputRef,
   TokenProps & TokenAdditionalProps & DelimiterActions
 >(
   (
@@ -27,6 +29,8 @@ const TokenInput = React.forwardRef<
       updateToken,
       deleteToken,
       parseToken,
+      onInput,
+      isFocusOnOptions,
       containDelimiter,
       hideRemoveButton
     },
@@ -35,7 +39,17 @@ const TokenInput = React.forwardRef<
     const inputRef = useRef<HTMLInputElement | null>(null)
     const spanRef = useRef<HTMLSpanElement | null>(null)
     useImperativeHandle(ref, () => ({
-      focus: () => focus()
+      focus,
+      value: () => inputRef.current?.value,
+      clear: () => (inputRef.current!.value = ''),
+      selectText: () => inputRef.current!.select(),
+      position: () => ({
+        top: inputRef.current
+          ? inputRef.current.getBoundingClientRect().top +
+          inputRef.current.getBoundingClientRect().height
+          : 0,
+        left: inputRef.current?.getBoundingClientRect().left || 0
+      })
     }))
 
     function focus() {
@@ -47,11 +61,7 @@ const TokenInput = React.forwardRef<
     }
 
     function keyDown(event: React.KeyboardEvent) {
-      if (
-        event.key === 'Enter' ||
-        event.key === 'Tab' ||
-        containDelimiter(event.key)
-      ) {
+      if (containDelimiter(event.key)) {
         view('self')
         event.preventDefault()
         event.stopPropagation()
@@ -92,10 +102,17 @@ const TokenInput = React.forwardRef<
     }
 
     function onBlur(e: React.FocusEvent) {
-      const text: string = (e.nativeEvent.target as HTMLInputElement)!.value
-      setTimeout(() => {
-        applyToken(text, 'self')
-      }, 0)
+      if (!isFocusOnOptions(e)) {
+        const text: string = (e.nativeEvent.target as HTMLInputElement)!.value
+        setTimeout(() => {
+          applyToken(text, 'self')
+        }, 0)
+      }
+    }
+
+    function onInputText() {
+      updateSpanText()
+      onInput(inputRef.current!.value || '')
     }
     return (
       <span className={classes.token}>
@@ -103,7 +120,7 @@ const TokenInput = React.forwardRef<
           className={classes.input}
           ref={inputRef}
           onPaste={() => onPaste()}
-          onInput={(_) => updateSpanText()}
+          onInput={(_) => onInputText()}
           onKeyDown={(e) => keyDown(e)}
           defaultValue={text}
           onBlur={(e) => onBlur(e)}

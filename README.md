@@ -23,7 +23,6 @@ npm install --save react-tokenfield
 
 ```tsx
 import { TokenField } from "react-tokenfield";
-import "react-tokenfield/dist/index.css";
 import React, { useState } from "react";
 
 const App = () => {

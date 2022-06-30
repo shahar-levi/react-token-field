@@ -1,17 +1,18 @@
 import classes from './../styles.module.css'
 import React, { CSSProperties, useImperativeHandle, useRef } from 'react'
-import { FocusRef } from '../TokenField/TokenField'
-import { TokenProps } from '../TokensReducer/TokensReducer'
+import { InputRef } from '../TokenField/TokenField'
+import { TokenProps, TokenState } from '../TokensReducer/TokensReducer'
 
 export interface TokenAdditionalProps {
   index: number
   text: string
   selected: boolean
   hideRemoveButton: boolean
+  renderToken?: (state: TokenState) => React.ReactNode
 }
 
 export const Token = React.forwardRef<
-  FocusRef,
+  InputRef,
   TokenAdditionalProps & TokenProps
 >(
   (
@@ -25,7 +26,8 @@ export const Token = React.forwardRef<
       isValid,
       deleteSelected,
       selected,
-      hideRemoveButton
+      hideRemoveButton,
+      renderToken
     },
     ref
   ): React.ReactElement => {
@@ -36,7 +38,13 @@ export const Token = React.forwardRef<
         if (tokenRef.current !== window.document.activeElement) {
           tokenRef.current!.focus()
         }
-      }
+      },
+      value: () => text,
+      clear: () => {},
+      position: () => ({
+        top: tokenRef.current?.getBoundingClientRect().top || 0,
+        left: tokenRef.current?.getBoundingClientRect().left || 0
+      })
     }))
 
     function getCSS(): CSSProperties {
@@ -106,7 +114,16 @@ export const Token = React.forwardRef<
         }`}
         style={getCSS()}
       >
-        <span className={classes.value}>{text}</span>
+        {renderToken ? (
+          renderToken({
+            text: text,
+            index,
+            invalid: !isValid(text),
+            selected
+          })
+        ) : (
+          <span className={classes.value}>{text}</span>
+        )}
         {hideRemoveButton ? (
           <span onClick={(e) => deleteItem(e)} className={classes.remove} />
         ) : null}

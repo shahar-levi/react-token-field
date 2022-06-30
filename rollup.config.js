@@ -7,7 +7,7 @@ import postcss from 'rollup-plugin-postcss'
 import dts from 'rollup-plugin-dts'
 
 const packageJson = require('./package.json')
-const devMode = process.env.NODE_ENV === 'development'
+const devMode = true;
 export default [
   {
     input: 'src/index.ts',
