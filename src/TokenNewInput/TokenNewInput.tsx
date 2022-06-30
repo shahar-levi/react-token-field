@@ -84,9 +84,11 @@ const TokenNewInput = React.forwardRef<
       position: () => ({
         top: inputRef.current
           ? inputRef.current.getBoundingClientRect().top +
+            window.scrollY +
             inputRef.current.getBoundingClientRect().height
           : 0,
-        left: inputRef.current?.getBoundingClientRect().left || 0
+        left:
+          window.scrollX + inputRef.current!.getBoundingClientRect().left || 0
       })
     }))
 

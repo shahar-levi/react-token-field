@@ -1,6 +1,6 @@
 import { TokenField } from 'react-tokenfield'
 import React, { useEffect, useState } from 'react'
-import classes from './index.module.css'
+
 interface User {
   firstName: string
   lastName: string
@@ -9,7 +9,6 @@ interface User {
 }
 
 const App = () => {
-
   const [tokens, setTokens] = useState<string[]>([])
   const [users, setUsers] = useState<User[]>([])
   useEffect(() => {
@@ -109,7 +108,7 @@ const App = () => {
         showRemoveButton={false}
         options={{
           renderCustom: renderOptions,
-          selectedClassName: classes.selected
+          selectedClassName: 'selected'
         }}
         tokenFieldCSS={{
           gap: '10px',
