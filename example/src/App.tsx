@@ -9,9 +9,9 @@ interface User {
 }
 
 const App = () => {
-  const [users, setUsers] = useState<User[]>([])
-  const [tokens, setTokens] = useState<string[]>([])
 
+  const [tokens, setTokens] = useState<string[]>([])
+  const [users, setUsers] = useState<User[]>([])
   useEffect(() => {
     window
       .fetch('https://dummyjson.com/users')
