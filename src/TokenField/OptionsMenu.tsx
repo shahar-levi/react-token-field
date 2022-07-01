@@ -62,7 +62,7 @@ const OptionsMenu = React.forwardRef<OptionsRef, OptionsProps>(
         )
       },
       value: () =>
-        value && elements.length ? elements[index].props['data-value'] : ''
+        value && elements?.length ? elements[index].props['data-value'] : ''
     }))
     useEffect(() => {
       setIndex(0)
@@ -88,7 +88,7 @@ const OptionsMenu = React.forwardRef<OptionsRef, OptionsProps>(
       return null
     }
 
-    return value && elements.length > 0 ? (
+    return value && elements && elements.length > 0 ? (
       <div
         className={classes.options}
         style={{
