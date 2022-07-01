@@ -45,7 +45,9 @@ const OptionsMenu = React.forwardRef<OptionsRef, OptionsProps>(
 
     useEffect(() => {
       containerRef.current?.children[index]?.scrollIntoView({
-        behavior: 'smooth'
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'nearest'
       })
     }, [index])
 

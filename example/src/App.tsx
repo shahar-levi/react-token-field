@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { TokenField } from 'react-tokenfield'
+import classes from "./index.module.css";
 
 interface User {
   firstName: string
@@ -92,7 +93,7 @@ const App = () => {
         showRemoveButton={false}
         options={{
           render: renderOptions,
-          selectedClassName: 'selected'
+          selectedClassName: classes.selected
         }}
         tokens={tokens}
       />
