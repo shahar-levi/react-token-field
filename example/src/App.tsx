@@ -1,5 +1,5 @@
-import { TokenField } from 'react-tokenfield'
 import React, { useEffect, useState } from 'react'
+import { TokenField } from 'react-tokenfield'
 
 interface User {
   firstName: string
@@ -72,22 +72,6 @@ const App = () => {
       </span>
     )
   }
-
-  // function renderCustomToken(state: TokenState) {
-  //   const user: User | undefined = users.find(
-  //     (user) => user.email === state.text
-  //   )
-  //   const value: string = user
-  //     ? user.firstName + ' ' + user.lastName
-  //     : state.text
-  //   return (
-  //     <span style={{ padding: '10px' }}>
-  //       <span>{value}</span>
-  //       <span>1.2.2</span>
-  //     </span>
-  //   )
-  // }
-
   const emailPattern: string =
     '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'
 
@@ -107,23 +91,11 @@ const App = () => {
         delimiters=',; '
         showRemoveButton={false}
         options={{
-          renderCustom: renderOptions
-        }}
-        tokenFieldCSS={{
-          gap: '10px',
-          background: '#fff',
-          color: '#333',
-          borderRadius: '2px',
-          resize: 'none'
+          render: renderOptions,
+          selectedClassName: 'selected'
         }}
         tokens={tokens}
       />
-      <h3>All Tokens</h3>
-      <ul>
-        {tokens.map(function (name, index) {
-          return <li key={index}>{name}</li>
-        })}
-      </ul>
     </div>
   )
 }

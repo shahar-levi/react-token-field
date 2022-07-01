@@ -48,7 +48,7 @@ const TokenField = ({
   onChange?: (details: Details) => void
   autoFocus?: boolean
   options?: {
-    renderCustom?: (value: string) => React.ReactElement
+    render?: (value: string) => React.ReactElement
     selectedClassName?: string
   }
   renderToken?: (state: TokenState) => React.ReactNode
@@ -316,7 +316,7 @@ const TokenField = ({
         {getTokenNewInputElement()}
       </div>
       <OptionsMenu
-        renderOptions={options?.renderCustom}
+        renderOptions={options?.render}
         ref={optionsRef}
         selectedClassName={options?.selectedClassName}
         position={position}
