@@ -1,5 +1,6 @@
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react'
 import classes from './../styles.module.css'
+
 export interface OptionsRef {
   next: () => void
   back: () => void
@@ -35,13 +36,17 @@ const OptionsMenu = React.forwardRef<OptionsRef, OptionsProps>(
           onClick: () => onSelectedValue(child.props['data-value']),
           className:
             i === index
-              ? `${classes.option} ${selectedClassName} ${child.props.className}`
-              : `${classes.option} ${child.props.className}`
+              ? `${selectedClassName || classes.selectedOption} ${
+                  child.props.className || ''
+                }`
+              : `${child.props.className || ''}`
         })
     )
 
     useEffect(() => {
-      containerRef.current?.children[index].scrollIntoView(false)
+      containerRef.current?.children[index]?.scrollIntoView({
+        behavior: 'smooth'
+      })
     }, [index])
 
     useImperativeHandle(ref, () => ({

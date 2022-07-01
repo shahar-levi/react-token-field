@@ -1,8 +1,3 @@
-:root {
-  --option-hover-bg: #fafafa;
-  --option-selected-bg: #f1f1f1;
-}
-
 .react-token-field {
 }
 
@@ -97,18 +92,6 @@
   position: absolute;
 }
 
-.option {
-  background: transparent;
-}
-
-.option:hover {
-  background: var(--option-hover-bg);
-}
-
-.option.selected {
-  background: var(--option-selected-bg);
-}
-
-.option:last-child {
-  border-bottom: none;
+.selectedOption {
+  background: #f1f1f1;
 }

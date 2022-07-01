@@ -107,8 +107,7 @@ const App = () => {
         delimiters=',; '
         showRemoveButton={false}
         options={{
-          renderCustom: renderOptions,
-          selectedClassName: 'selected'
+          renderCustom: renderOptions
         }}
         tokenFieldCSS={{
           gap: '10px',

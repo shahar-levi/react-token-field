@@ -48,8 +48,8 @@ const TokenField = ({
   onChange?: (details: Details) => void
   autoFocus?: boolean
   options?: {
-    renderCustom: (value: string) => React.ReactElement
-    selectedClassName: string
+    renderCustom?: (value: string) => React.ReactElement
+    selectedClassName?: string
   }
   renderToken?: (state: TokenState) => React.ReactNode
 }) => {
