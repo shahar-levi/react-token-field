@@ -47,7 +47,7 @@ const App = () => {
   function renderOptions(str: string): React.ReactElement {
     return (
       <div
-       className='options'
+        className='options'
       >
         {users
           .filter(
@@ -100,6 +100,19 @@ const App = () => {
 
 export default App
 ```
+
+#show all op
+
+
+Property Name  | Type |Descri
+------------- | -------------| -------------
+placeholder  | string |a short hint that describes the expected value of an input
+delimiters  |string| a string that contains all related delimiters for example ',;-', the first delimiter is the main delimiter that's means that when you copy tokens the copied token will be separated with the main delimeter
+tokens|string[]|the array of string tokens
+pattern|string|The pattern specifies a regular expression that token should match
+showRemoveButton|boolean|show remove botton
+options|object
+onChange|function|
 
 ## Snapshot
 

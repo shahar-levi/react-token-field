@@ -53,12 +53,12 @@ const OptionsMenu = React.forwardRef<OptionsRef, OptionsProps>(
 
     useImperativeHandle(ref, () => ({
       next: () => {
-        setIndex((index) => (index + 1) % elements.length)
+        setIndex((index) => (index + 1) % elements?.length)
       },
       isChildOf: isChildOf,
       back: () => {
         setIndex((index) =>
-          index - 1 < 0 ? elements.length - 1 : (index - 1) % elements.length
+          index - 1 < 0 ? elements?.length - 1 : (index - 1) % elements?.length
         )
       },
       value: () =>
