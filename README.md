@@ -101,18 +101,30 @@ const App = () => {
 export default App
 ```
 
-#show all op
+## Properties
 
 
-Property Name  | Type |Descri
+Property Name  | Type |Description
 ------------- | -------------| -------------
 placeholder  | string |a short hint that describes the expected value of an input
+autoFocus    |boolean| apply auto focus on the tokenfield
 delimiters  |string| a string that contains all related delimiters for example ',;-', the first delimiter is the main delimiter that's means that when you copy tokens the copied token will be separated with the main delimeter
-tokens|string[]|the array of string tokens
+tokens|string[]|The array of string tokens
 pattern|string|The pattern specifies a regular expression that token should match
-showRemoveButton|boolean|show remove botton
-options|object
-onChange|function|
+showRemoveButton|boolean|Show remove botton
+options|object|Options for the autocomplete [How to use options..](#how-to-use-options)
+onChange|function| Callback function that get the tokens and invalid tokens
+getTokenCSS|function| Callback function that return CSS style for token, the function gets the token state of the token(selected,valid,invalid).
+tokenFieldCSS|object|Custom CSS style for the tokenfield control.
+
+
+## How to use options
+Options has 2 properties
+- renderer
+  A callback function that gets the part of the string that the user inserts and returns a ReactElement
+  that contains the options as child elements, each child element represents the option value and should add the data-value property, the data-value conatins the value that will add as a new/updated token.
+- selectedClassName
+  the css class name that will be set on the selected option
 
 ## Snapshot
 
