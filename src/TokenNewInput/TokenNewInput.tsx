@@ -117,6 +117,7 @@ const TokenNewInput = React.forwardRef<
     return (
       <span className={classes.token}>
         <input
+          autoComplete={'false'}
           placeholder={state.tokens.length === 0 ? placeholder : ''}
           className={classes.input}
           ref={inputRef}

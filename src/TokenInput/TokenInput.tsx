@@ -119,6 +119,7 @@ const TokenInput = React.forwardRef<
     return (
       <span className={classes.token}>
         <input
+          autoComplete={'false'}
           className={classes.input}
           ref={inputRef}
           onPaste={() => onPaste()}
