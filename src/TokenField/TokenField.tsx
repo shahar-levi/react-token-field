@@ -45,7 +45,7 @@ const TokenField = ({
   readonly?: boolean
   showRemoveButton?: boolean
   className?: string
-  tokenFieldCSS?: TokenFieldCSS,
+  tokenFieldCSS?: TokenFieldCSS
   getTokenCSS?: (state: TokenState) => TokenCSS
   onChange?: (details: Details) => void
   autoFocus?: boolean
@@ -78,8 +78,13 @@ const TokenField = ({
     top: number
   }>(null)
 
+  const equalsCheck = (tokensA: string[], tokensB: string[]) => {
+    return JSON.stringify(tokensA) === JSON.stringify(tokensB)
+  }
   useEffect(() => {
-    setTokens(tokens)
+    if (state.tokens.length > 0 && !equalsCheck(tokens, state.tokens)) {
+      setTokens(tokens)
+    }
   }, [tokens])
 
   useEffect(() => {
@@ -305,7 +310,7 @@ const TokenField = ({
     <div
       ref={controlRef}
       onScroll={() => updateOptionsPosition()}
-      className={`${classes.reactTokenField} ${className}`}
+      className={`${className}`}
     >
       <div
         className={classes.tokens}
