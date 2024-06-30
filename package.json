@@ -1,6 +1,6 @@
 {
   "name": "react-token-field",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "description": "Create token fields with copy/paste and keyboard support",
   "author": "Shahar Levi",
   "keywords": [
@@ -68,7 +68,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-standard": "^4.0.1",
-    "gh-pages": "^2.2.0",
+    "gh-pages": "^6.1.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
     "react": "^16.8.0",
@@ -85,5 +85,8 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "react-token-field": "^2.0.10"
+  }
 }
