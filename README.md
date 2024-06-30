@@ -1,8 +1,10 @@
 # react-token-field
+> Package was renamed from react-tokenfield to react-token-field
 
-> Create token fields with copy/paste and keyboard support
+> React Token Field is a React component that allows you to create token fields with copy/paste and keyboard support
 
 [![NPM](https://img.shields.io/npm/v/react-token-field.svg)](https://www.npmjs.com/package/react-token-field) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 
 ## Features
 
