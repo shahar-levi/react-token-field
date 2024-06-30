@@ -92,8 +92,26 @@ const OptionsMenu = React.forwardRef<OptionsRef, OptionsProps>(
       <div
         className={classes.options}
         style={{
-          top: position?.top,
-          left: position?.left
+          ...(position &&
+            position?.top + (containerRef?.current?.clientHeight || 300) <
+              window.innerHeight && {
+              top: position?.top
+            }),
+          ...(position &&
+            position?.top + (containerRef?.current?.clientHeight || 300) >=
+              window.innerHeight && {
+              bottom: 10
+            }),
+          ...(position &&
+            position?.left + (containerRef?.current?.clientWidth || 300) <
+              window.innerWidth && {
+              left: position?.left
+            }),
+          ...(position &&
+            position?.left + (containerRef?.current?.clientWidth || 300) >=
+              window.innerWidth && {
+              right: 10
+            })
         }}
       >
         {renderOptionElement()}

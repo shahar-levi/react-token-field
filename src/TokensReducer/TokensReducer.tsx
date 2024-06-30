@@ -25,7 +25,8 @@ export enum ActionType {
   Select,
   Edit,
   Focus,
-  FocusNew
+  FocusNew,
+  SetTokens
 }
 
 export interface DelimiterActions {
@@ -62,6 +63,10 @@ type Action =
       type: ActionType.FocusNew
     }
   | { type: ActionType.DeleteLast }
+  | {
+      type: ActionType.SetTokens
+      payload: { tokens: string[] }
+    }
 
 function focusBack(index: number, state: TokensState) {
   if (index === -1) {
@@ -103,6 +108,12 @@ const reducer = (state: TokensState, action: Action) => {
   const tokens: string[] = updatedState.tokens.map((str) => str)
   let multi: boolean
   switch (action.type) {
+    case ActionType.SetTokens:
+      updatedState.tokens = action.payload.tokens
+      updatedState.selectedIndexes = []
+      updatedState.editIndex = -1
+      updatedState.focusIndex = -1
+      return updatedState
     case ActionType.Update:
       updatedState.selectedIndexes = []
       tokens.splice(action.payload.index, 1, ...action.payload.tokens)
@@ -177,19 +188,25 @@ const reducer = (state: TokensState, action: Action) => {
       updatedState.selectedIndexes =
         updatedState.focusIndex !== -1 ? [updatedState.focusIndex] : []
       return updatedState
-
     default:
       return state
   }
 }
 
 export const useTokens = (
-  tokens: string[],
   pattern: string,
   readonly: boolean,
   tokenCSS?: ((tokenState: TokenState) => TokenCSS) | undefined
 ) => {
-  const [state, dispatch] = useReducer(reducer, { ...initialState, tokens })
+  const [state, dispatch] = useReducer(reducer, { ...initialState })
+
+  // set tokens
+  function setTokens(tokens: string[]) {
+    dispatch({
+      type: ActionType.SetTokens,
+      payload: { tokens }
+    })
+  }
 
   function getTokenStyle(tokenState: TokenState): TokenCSS {
     return tokenCSS ? tokenCSS(tokenState) : {}
@@ -289,6 +306,7 @@ export const useTokens = (
 
   return {
     state,
+    setTokens,
     selectToken,
     focus,
     focusLast,
