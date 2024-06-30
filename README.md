@@ -1,8 +1,8 @@
-# react-tokenfield
+# react-token-field
 
 > Create token fields with copy/paste and keyboard support
 
-[![NPM](https://img.shields.io/npm/v/react-tokenfield.svg)](https://www.npmjs.com/package/react-tokenfield) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/react-token-field.svg)](https://www.npmjs.com/package/react-token-field) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Features
 
@@ -18,14 +18,14 @@
 ## Install
 
 ```bash
-npm install --save react-tokenfield
+npm install --save react-token-field
 ```
 
 ## Usage
 
 ```tsx
 import React, { useEffect, useState } from 'react'
-import { TokenField } from 'react-tokenfield'
+import { TokenField } from 'react-token-field'
 
 interface User {
   firstName: string

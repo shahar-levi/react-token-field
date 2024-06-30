@@ -16,7 +16,7 @@ export default [
         file: packageJson.main,
         format: 'cjs',
         sourcemap: devMode,
-        name: 'react-tokenfield'
+        name: 'react-token-field'
       },
       {
         file: packageJson.module,

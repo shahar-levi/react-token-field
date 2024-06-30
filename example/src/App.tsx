@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { TokenField } from 'react-tokenfield'
+import { TokenField } from 'react-token-field'
 
 const App = () => {
   const [tokens, setTokens] = useState<string[]>([])

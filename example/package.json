@@ -1,5 +1,5 @@
 {
-  "name": "react-tokenfield-example",
+  "name": "react-token-field-example",
   "homepage": ".",
   "version": "0.0.0",
   "scripts": {
@@ -19,7 +19,7 @@
     "react": "file:../node_modules/react",
     "react-dom": "file:../node_modules/react-dom",
     "react-scripts": "file:../node_modules/react-scripts",
-    "react-tokenfield": "file:..",
+    "react-token-field": "file:..",
     "typescript": "file:../node_modules/typescript"
   },
   "devDependencies": {
