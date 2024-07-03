@@ -85,7 +85,8 @@ const TokenField = ({
     if (tokens.length > 0 && !equalsCheck(tokens, state.tokens)) {
       setTokens(tokens)
     }
-  }, [tokens, state.tokens])
+  }, [tokens])
+
 
   useEffect(() => {
     if (state.focusIndex !== -2) {
@@ -131,6 +132,7 @@ const TokenField = ({
       setPosition(focusRefs.current[state.editIndex].position())
     }
   }
+
 
   function getTokenElement(token: string, index: number) {
     return (
