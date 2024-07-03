@@ -1,14 +1,14 @@
-import { Token } from '../Token/Token'
-import TokenInput from '../TokenInput/TokenInput'
-import { TokenState, useTokens } from '../TokensReducer/TokensReducer'
-import TokenNewInput from '../TokenNewInput/TokenNewInput'
 import React, { useEffect, useRef, useState } from 'react'
-import classes from './../styles.module.css'
 import {
   getTokenFieldCSS,
   TokenCSS,
   TokenFieldCSS
 } from '../Styles/Token.style'
+import { Token } from '../Token/Token'
+import TokenInput from '../TokenInput/TokenInput'
+import TokenNewInput from '../TokenNewInput/TokenNewInput'
+import { TokenState, useTokens } from '../TokensReducer/TokensReducer'
+import classes from './../styles.module.css'
 import OptionsMenu, { OptionsRef } from './OptionsMenu'
 
 export interface InputRef {
@@ -82,10 +82,10 @@ const TokenField = ({
     return JSON.stringify(tokensA) === JSON.stringify(tokensB)
   }
   useEffect(() => {
-    if (state.tokens.length > 0 && !equalsCheck(tokens, state.tokens)) {
+    if (tokens.length > 0 && !equalsCheck(tokens, state.tokens)) {
       setTokens(tokens)
     }
-  }, [tokens])
+  }, [tokens, state.tokens])
 
   useEffect(() => {
     if (state.focusIndex !== -2) {
